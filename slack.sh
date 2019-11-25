@@ -15,4 +15,12 @@ function toClipboard
 
 curl https://raw.githubusercontent.com/kfahy/slack-disable-wysiwyg-bookmarklet/master/index.js | toClipboard
 
-SLACK_DEVELOPER_MENU=true slack
+export SLACK_DEVELOPER_MENU=true
+
+if command -v slack > /dev/null; then
+  slack
+elif command -v /Applications/Slack.app/Contents/MacOS/Slack > /dev/null; then
+  /Applications/Slack.app/Contents/MacOS/Slack
+else
+  echo "I can't find slack installed on this machine. Oh well, you should still have the code in your clipboard to paste into your browser."
+fi
